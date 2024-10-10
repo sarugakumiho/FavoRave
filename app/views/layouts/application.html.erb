@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FavoRave</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <!--WebpackerでCSSとJavaScriptファイル管理-->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <!--FontAwesome導入-->
+    <script src="https://kit.fontawesome.com/8644edc9d3.js" crossorigin="anonymous"></script>
+    
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
