@@ -1,24 +1,40 @@
-# README
+# FavoRave
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+### サイトテーマ
+お気に入りの動画（映画・ドラマ・アニメなど）について熱烈に紹介するためのレビューアプリ
 
-* Ruby version
+### テーマを選んだ理由
+私は、映画やアニメ鑑賞が趣味で、気になる作品を見る前にその作品に対するレビューや口コミをチェックする習慣があります。<br>
+そのため、色んな人が自分のお気に入りの動画について紹介したり、レビューを書くことができるツールがあれば便利だなと<br>
+考えました。
+また、同じ趣味を持っていたり、話の合う仲間を見つけることができるコミニュケーションアプリがあれば<br>
+面白いなと思いこのテーマを選びました。
 
-* System dependencies
+### ターゲットユーザ
+- お気に入りの動画がある人
+- 世の中に広めたい動画がある人
+- 鑑賞する動画を探している人
+- お気に入りの動画について熱く語り合いたい人
 
-* Configuration
+### 主な利用シーン
+- 動画のレビューをする時
+- 鑑賞する動画を探している時
+- 動画について熱く語り合いたい時
+- 共通の趣味の人を探したい時
 
-* Database creation
+## 設計書
+後ほど作成予定
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- フリーイラスト素材として以下を使用
+  * Pixabay (https://pixabay.com/ja/)
+  * PAKUTASO (https://www.pakutaso.com/)
