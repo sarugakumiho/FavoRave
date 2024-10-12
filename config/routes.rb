@@ -8,5 +8,16 @@ Rails.application.routes.draw do
   # deviseルーティング
   devise_for :admins
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  # 会員ルーティング
+  namespace :public do
+    resources :users, only: [:show, :index, :edit, :update, :destroy] do
+      collection do
+        get 'my_page'
+        get 'check'
+        patch 'information', to: 'users#update'
+      end
+    end
+  end
+  
 end
