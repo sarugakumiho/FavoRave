@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   get 'homes/about'
   
   # deviseルーティング
-  devise_for :admins
-  devise_for :users  
+  devise_for :admin, controllers: {
+    sessions: "admin/sessions"
+  }
+  devise_for :users, controllers: {
+  registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 end

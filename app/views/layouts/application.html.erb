@@ -12,8 +12,22 @@
     
     <!--FontAwesome導入-->
     <script src="https://kit.fontawesome.com/8644edc9d3.js" crossorigin="anonymous"></script>
-    
   </head>
+  
+   <header>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "新規登録", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+      <% end %>
+    </header>
 
   <body>
     <%= yield %>
