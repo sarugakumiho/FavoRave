@@ -1,16 +1,25 @@
 Rails.application.routes.draw do
-  
-  # トップページ
-  root to: 'homes#top'
-  # アバウトページ
-  get 'homes/about'
-  
-  # deviseルーティング
-  devise_for :admin, controllers: {
-    sessions: "admin/sessions"
-  }
+  # ------------------------------------------------------------------------------------------------------------------
+  # 会員新規登録・ログイン設定
   devise_for :users, controllers: {
   registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  # ------------------------------------------------------------------------------------------------------------------
+  # 管理者ログイン設定
+  devise_for :admin, controllers: {
+    sessions: "admin/sessions"
+  }
+  # ------------------------------------------------------------------------------------------------------------------
+  # [Public側]
+  # homesルーティング
+  root to: 'homes#top'
+  get 'homes/about'
+  # ------------------------------------------------------------------------------------------------------------------
+  # [Admin側]
+  # homesルーティング
+  get 'admin', to: 'admin/homes#top'
+  namespace :admin do
+  end
+  # ------------------------------------------------------------------------------------------------------------------
 end

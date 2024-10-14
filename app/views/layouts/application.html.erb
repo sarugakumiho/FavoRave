@@ -14,10 +14,15 @@
     <script src="https://kit.fontawesome.com/8644edc9d3.js" crossorigin="anonymous"></script>
   </head>
   
-   <header>
+  <body>
+    <header>
       <% if user_signed_in? %>
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      <% elsif admin_signed_in? %>
+        <li>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
         </li>
       <% else %>
         <li>
@@ -29,7 +34,12 @@
       <% end %>
     </header>
 
-  <body>
-    <%= yield %>
+    <main>
+      <%= yield %> 
+    </main>
+    
+    <footer>
+    </footer>
+    
   </body>
 </html>
