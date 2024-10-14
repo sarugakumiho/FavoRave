@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
-  # 権限設定
-  before_action :configure_sign_up_params, only: [:create]
-  
+  before_action :configure_sign_up_params, only: [:create] 
+  # ------------------------------------------------------------------------------------------------------------------
   # 新規登録後遷移先
   def after_sign_up_path_for(resource)
+    # 以下マイページpathに変更
     root_path
   end
-
+  # ------------------------------------------------------------------------------------------------------------------
   # 権限設定
+  protected
+  
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys:[:name])
   end
-
+  # ------------------------------------------------------------------------------------------------------------------
   # GET /resource/sign_up
   # def new
   #   super
