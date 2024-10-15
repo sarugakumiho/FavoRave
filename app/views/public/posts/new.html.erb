@@ -1,0 +1,78 @@
+<div class="container">
+  <!--エラーメッセージ-->
+  <% if @post.errors.any? %>
+    <div class="d-flex flex-column justify-content-center align-items-center text-center">
+      <div>
+        <i class="fa-solid fa-triangle-exclamation" style="color: #ff0000; font-size: 2rem;"></i>
+      </div>
+      <div  class="mb-3", style="margin-top: 10px;">
+        <strong>以下のエラーにより保存できませんでした。<br>内容を確認し、再度入力して下さい。&nbsp;<i class="fa-solid fa-person-praying"></i></strong>
+      </div>
+      <ul class="mb-4" style="color: #ff0000; list-style: none; padding: 0;">
+        <% @post.errors.full_messages.each do |message| %>
+          <li><strong><%= message %>。</strong></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <h4>︎新規投稿</h4>
+    <%= form_with url: posts_path, model: @post, method: :post do |f| %>
+    
+      <div class="form-group">
+        <span style="color: red;">*</span>
+        <strong><%= f.label :動画タイトル %></strong>
+        <%= f.text_field :title, class: "form-control title",required: true, placeholder: "入力してください", style: "width: 100%; box-sizing: border-box;" %>
+      </div>
+      
+      <div class="form-group">
+        <span style="color: red;">*</span>
+        <strong><%= f.label :動画情報（URL） %></strong>
+        <%= f.text_field :url, class: "form-control title",required: true, placeholder: "入力してください", style: "width: 100%; box-sizing: border-box;" %>
+      </div>
+      
+      <div class="form-group">
+        &nbsp;<i class="fa-regular fa-image mt-1"></i>
+        <strong class="ml-2"><%= f.label :関連写真 %></strong>
+        <span style="font-size: 12px;">　※画像の拡張子：jpg、jpeg、png</span>
+        <%= f.file_field :image, accept: 'image/jpg, image/png, image/jpeg', class: "w-100" %>
+      </div>
+      
+      <div class="form-group">
+        <span style="color: red;">*</span>
+        <strong><%= f.label :制作者名 %></strong>
+        <%= f.text_field :creator, class: "form-control title",required: true, placeholder: "入力してください", style: "width: 100%; box-sizing: border-box;" %>
+      </div>
+      
+      <div class="form-group">
+        <strong class="mr-2"><%= f.label :タグ %></strong>
+        <span style="font-size: 12px;">※半角スペースを入力することで複数のタグを付けることができます。</span>
+        <%= f.text_field :tag_name, placeholder: "例）タグ名 タグ名 タグ名", class:"form-control", style: "width: 600px;" %>
+      </div>
+      
+      <div class="form-group">
+        <span style="color: red;">*</span>
+        <strong><%= f.label :動画内容 %></strong>
+        <%= f.text_area :content, class: "form-control title",required: true, placeholder: "入力してください", style: "width: 100%; box-sizing: border-box;" %>
+      </div>
+      
+      <div class="form-group">
+        <span style="color: red;">*</span>
+        <strong><%= f.label :おすすめ理由 %></strong>
+        <%= f.text_area :recommended_reasons, class: "form-control title",required: true, placeholder: "入力してください", style: "width: 100%; box-sizing: border-box;" %>
+      </div>
+
+    </div>
+  
+    <div class="row justify-content-center">
+      <div class="d-flex align-items-center mt-2">
+        <div class="form-group my-3 mr-5">
+          <%= link_to "戻る", posts_path, class: "green_form_btn" %>
+        </div>
+        <div class="form-group my-3">
+          <%= f.submit '登録', class: "pink_form_btn" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
