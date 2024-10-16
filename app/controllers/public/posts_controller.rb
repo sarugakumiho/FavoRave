@@ -27,9 +27,11 @@ class Public::PostsController < ApplicationController
   end
   # ------------------------------------------------------------------------------------------------------------------
   def show
+
   end
 
   def index
+    @posts = Post.all
   end
 
   def edit
