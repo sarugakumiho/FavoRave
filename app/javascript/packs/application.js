@@ -14,6 +14,17 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
 
+// レビュー機能用
+window.$ = window.jQuery = require('jquery');
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// レビュー機能用
+import Raty from "raty.js"
+window.raty = function(elem,opt) {
+  let raty =  new Raty(elem,opt)
+  raty.init();
+  return raty;
+}

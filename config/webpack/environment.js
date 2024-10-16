@@ -2,7 +2,7 @@ const { environment } = require('@rails/webpacker')
 
 module.exports = environment
 
-// Bootstrap導入用
+// Bootstrap・レビュー機能　導入用
 const webpack = require('webpack')
 environment.plugins.prepend(
   'Provide',
