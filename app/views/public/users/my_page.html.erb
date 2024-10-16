@@ -1,0 +1,13 @@
+<div class="conainer">
+  
+  <%= @user.name %>
+  
+  <%= image_tag @user.get_profile_image(400, 600), class: "rounded-circle border shadow", style: "width: 100px;" %>
+
+  <%= simple_format(@user.introduction.present? ? @user.introduction : "よろしくお願いします。") %>
+
+  <% if @user == current_user %>
+    <%= link_to "プロフィール編集", edit_user_information_path, class: "my_page_btn mb-2" %>
+  <% end %>
+  
+</div>
