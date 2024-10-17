@@ -45,12 +45,6 @@
       </div>
       
       <div class="form-group">
-        <strong class="mr-2"><%= f.label :タグ %></strong>
-        <span style="font-size: 12px;">※半角スペースを入力することで複数のタグを付けることができます。</span>
-        <%= f.text_field :tag_name, placeholder: "例）タグ名 タグ名 タグ名", class:"form-control", style: "width: 600px;" %>
-      </div>
-      
-      <div class="form-group">
         <span style="color: red;">*</span>
         <strong><%= f.label :動画内容 %></strong>
         <%= f.text_area :content, class: "form-control title",required: true, placeholder: "入力してください", style: "width: 100%; box-sizing: border-box;" %>
@@ -62,6 +56,7 @@
         <%= f.text_area :recommended_reasons, class: "form-control title",required: true, placeholder: "入力してください", style: "width: 100%; box-sizing: border-box;" %>
       </div>
       
+    　<!--星評価-->
       <% if @post.id.nil? %>
         <div class="form-group" id="star">
           <%= f.label :star %>
@@ -85,10 +80,12 @@
         </script>
       <% else %>
         <div class="form-group">
-          <%= render "static_rate", post: post %>
+          <%= render "posts/static_rate", post: @post %>
         </div>
     <% end %>
     </div>
+    
+    <!--タグ入力フォーム挿入予定-->
   
     <div class="row justify-content-center">
       <div class="d-flex align-items-center mt-2">

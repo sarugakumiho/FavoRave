@@ -1,65 +1,46 @@
 <div class="container">
   <% @posts.each do |post| %>
-    <%= image_tag post.user.profile_image, class: "rounded-circle", style: "width: 50px; height: 50px; object-fit: cover;" %>
+  
+    <div class="mb-4">
+      <h5>
+        <%= link_to post.user.name, user_path(post.user), class: "text-decoration-none text-dark font-weight-bold" %>
+      </h5>
+      <%= image_tag post.user.get_profile_image(400, 600), class: "rounded-circle border shadow", style: "width: 100px;" %>
+    </div>
     
-    <h5 class="ml-3 mb-0">
-      <%= link_to post.user.name, user_path(post.user), class: "text-decoration-none text-dark font-weight-bold" %>
-    </h5>
+    <h5 class="font-weight-bold"><%= post.title %></h5>
     
-    <h5 class="card-title font-weight-bold"><%= post.title %></h5>
+    <p style="max-width: 33%; word-wrap: break-word;">
+      <%= text_url_to_link(h(post.url).html_safe).html_safe %>
+    </p>
     
-    <p class="card-text"><%= simple_format(post.url) %></p>
-    
-    <div class="text-center mb-4">
+    <div class="mb-4">
       <% if post.image.attached? %>
-        <%= image_tag post.image, class: "img-fluid rounded shadow-lg", style: "max-width: 300px; height: auto;" %>
+        <%= image_tag post.image, class: "img-fluid rounded shadow-lg", style: "width: 100px; height: auto;" %>
       <% end %>
     </div>
-    
-    <div class="mt-3">
-      <% post.tags.each do |tag| %>
-        <%= link_to "##{tag.tag_name}", tags_admin_posts_path(tag_id: tag.id), class: "badge badge-secondary mx-1" %>
-      <% end %>
-    </div>
-    
-    <p class="card-text"><%= simple_format(post.creator) %></p>
-    
-    <p class="card-text"><%= simple_format(post.content) %></p>
-    
-    <p class="card-text"><%= simple_format(post.recommended_reasons) %></p>
-    
-    <% if post.id.nil? %>
-      <div class="form-group" id="star">
-        <%= f.label :star %>
-        <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
-        <div id="post_raty"></div>
-      </div>
-      <script>
-        $(document).on('turbolinks:load', function() {
-          let elem = document.querySelector('#post_raty');
-          if (elem == null) return;
 
-          elem.innerHTML = ""
-          let opt = {  
-            starOn: "<%= asset_path('star-on.png') %>",
-            starOff: "<%= asset_path('star-off.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            scoreName: 'post[star]',
-          };
-          raty(elem, opt);
-        });
-      </script>
-    <% else %>
-      <div class="form-group">
-        <%= render "static_rate", post: post %>
-      </div>
-    <% end %>
+    <div>
+      <p>【製作者名】</p>
+      <p><%= simple_format(post.creator) %></p>
+    </div>
+    
+    <div>
+      <p>【動画内容】</p>
+      <p><%= simple_format(post.content) %></p>
+    </div>
+   
+    <div>
+      <p>【おすすめ理由】</p>
+      <p><%= simple_format(post.recommended_reasons) %></p>
+    </div>
+    
+    <!--星評価表示予定-->
+    
+    <!--タグ表示予定-->
     
     <div class="d-flex justify-content-between align-items-center">
-      <%= link_to '詳細', admin_post_path(post), class: "standard_btn" %>
-      <div class="text-muted">
-        <%= post.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
-      </div>
+      <%= link_to '詳細', post_path(post), class: "standard_btn" %>
     </div>
     
   <% end %>

@@ -10,14 +10,11 @@ class Public::PostsController < ApplicationController
   end
   # ------------------------------------------------------------------------------------------------------------------
   def create
-    @user = current_member
+    @user = current_user
     @post = @user.posts.new(post_params)
-    tag_list = params[:post][:tag_name].split(nil)
     
     # 保存処理
     if @post.save
-      # タグも保存
-      @post.save_tag(tag_list) 
       flash[:notice] = "リストが保存されました！"
       redirect_to post_path(@post) and return
     else
@@ -27,13 +24,14 @@ class Public::PostsController < ApplicationController
   end
   # ------------------------------------------------------------------------------------------------------------------
   def show
-
+    @post = Post.find(params[:id])
+    @user = @post.user
   end
-
+  # ------------------------------------------------------------------------------------------------------------------
   def index
     @posts = Post.all
   end
-
+  # ------------------------------------------------------------------------------------------------------------------
   def edit
   end
 
