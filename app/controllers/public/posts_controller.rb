@@ -15,10 +15,10 @@ class Public::PostsController < ApplicationController
     
     # 保存処理
     if @post.save
-      flash[:notice] = "リストが保存されました！"
+      flash[:notice] = "投稿が保存されました！"
       redirect_to post_path(@post) and return
     else
-      flash.now[:alert] = "リストの保存に失敗しました。"
+      flash.now[:alert] = "投稿の保存に失敗しました。"
       render :new
     end
   end
@@ -33,11 +33,22 @@ class Public::PostsController < ApplicationController
   end
   # ------------------------------------------------------------------------------------------------------------------
   def edit
+    @post = Post.find(params[:id])
   end
-
-  def update
+  # ------------------------------------------------------------------------------------------------------------------
+  def update()
+    @post = Post.find(params[:id])
+    
+     # 編集処理
+    if @post.update(post_params)
+      flash[:notice] = "投稿の編集が完了しました！"
+      redirect_to post_path(@post) and return
+    else
+      flash.now[:alert] = "投稿の編集に失敗しました。"
+      render :edit
+    end
   end
-
+  # ------------------------------------------------------------------------------------------------------------------
   def destroy
   end
 
