@@ -1,2 +1,50 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  
+  <div class="mb-4">
+    <h5>
+      <%= link_to @post.user.name, user_path(@post.user), class: "text-decoration-none text-dark font-weight-bold" %>
+    </h5>
+    <%= image_tag @post.user.get_profile_image(400, 600), class: "rounded-circle border shadow", style: "width: 100px;" %>
+  </div>
+
+  <div>
+    <h5 class="font-weight-bold"><%= @post.title %></h5>
+    
+    <p style="max-width: 33%; word-wrap: break-word;">
+      <%= text_url_to_link(h(@post.url).html_safe).html_safe %>
+    </p>
+    
+    <div class="mb-4">
+      <% if @post.image.attached? %>
+        <%= image_tag @post.image, class: "img-fluid rounded shadow-lg", style: "width: 100px; height: auto;" %>
+      <% end %>
+    </div>
+    
+    <div>
+      <p>【製作者名】</p>
+      <p><%= simple_format(@post.creator) %></p>
+    </div>
+    
+    <div>
+      <p>【動画内容】</p>
+      <p><%= simple_format(@post.content) %></p>
+    </div>
+   
+    <div>
+      <p>【おすすめ理由】</p>
+      <p><%= simple_format(@post.recommended_reasons) %></p>
+    </div>
+    
+    <!--星評価表示予定-->
+    
+    <!--タグ表示予定-->
+    
+    <div class="d-flex justify-content-between align-items-center">
+      <%= link_to '戻る', posts_path, class: "standard_btn" %>
+    </div>
+    
+    <div class="d-flex justify-content-between align-items-center">
+      <%= link_to '編集', edit_post_path, class: "standard_btn" %>
+    </div>
+    
+</div>
