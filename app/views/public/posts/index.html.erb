@@ -1,6 +1,10 @@
 <div class="container">
+  <!-- JSONデータを渡す -->
+  <script>
+    var postsData = <%= raw(@posts.to_json(only: [:id, :star])) %>;
+  </script>
+
   <% @posts.each do |post| %>
-  
     <div class="mb-4">
       <h5>
         <%= link_to post.user.name, user_path(post.user), class: "text-decoration-none text-dark font-weight-bold" %>
@@ -34,14 +38,40 @@
       <p>【おすすめ理由】</p>
       <p><%= simple_format(post.recommended_reasons) %></p>
     </div>
-    
-    <!--星評価表示予定-->
-    
+
+    <!-- 星評価表示 -->
+    <div id="post_raty_<%= post.id %>" class="post-rating"></div>
+
     <!--タグ表示予定-->
     
     <div class="d-flex justify-content-between align-items-center">
       <%= link_to '詳細', post_path(post), class: "standard_btn" %>
     </div>
-    
   <% end %>
 </div>
+
+<!-- JavaScript部分 -->
+<script>
+  $(document).on('turbolinks:load', function() {
+    if (typeof postsData !== 'undefined') {
+      postsData.forEach(function(post) {
+        let elem = document.querySelector('#post_raty_' + post.id);
+        if (elem == null) return;
+
+        // 既存の星をクリア
+        $(elem).raty('destroy');
+
+        let opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          score: post.star || 0,
+          readOnly: true,
+          number: 5  // 星の最大数を5に設定
+        };
+        $(elem).raty(opt);
+      });
+    }
+  });
+</script>
+
