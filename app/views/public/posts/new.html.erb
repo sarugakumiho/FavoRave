@@ -16,9 +16,10 @@
     </div>
   <% end %>
   
+  <!--投稿フォーム-->
   <h4>︎新規投稿</h4>
-    <%= form_with url: posts_path, model: @post, method: :post do |f| %>
-    
+　　<%= form_with url: posts_path, model: @post, method: :post, local: true, data: { turbolinks: false } do |f| %>
+
       <div class="form-group">
         <span style="color: red;">*</span>
         <strong><%= f.label :動画タイトル %></strong>
@@ -59,21 +60,22 @@
     　<!--星評価-->
       <% if @post.id.nil? %>
         <div class="form-group" id="star">
-          <%= f.label :star %>
+          <%= f.label :評価 %>
           <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
           <div id="post_raty"></div>
         </div>
         <script>
-          $(document).on('turbolinks:load', function() {
+          $(document).on('turbolinks:load ready', function() {
             let elem = document.querySelector('#post_raty');
             if (elem == null) return;
-      
+        
             elem.innerHTML = ""
             let opt = {  
               starOn: "<%= asset_path('star-on.png') %>",
               starOff: "<%= asset_path('star-off.png') %>",
               starHalf: "<%= asset_path('star-half.png') %>",
               scoreName: 'post[star]',
+              score: <%= @post.star || 1 %>  // 初期値を1に設定
             };
             raty(elem, opt);
           });
