@@ -17,7 +17,9 @@
 <body class="bg-light">
   <header class="navbar navbar-expand-lg navbar-dark" style="background-color: #f08080;">
     <div class="container">
-      <a class="navbar-brand" href="#">FavoRave</a>
+      <strong>
+        <a class="navbar-brand" href="#">FavoRave</a>
+      </strong>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,27 +28,41 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "マイページ", my_page_users_path, class: "nav-link" %>
+              <strong>
+                <%= link_to "マイページ", my_page_users_path, class: "nav-link" %>
+              </strong>
             </li>
             <li class="nav-item">
-              <%= link_to "新規投稿", new_post_path, class: "nav-link" %>
+              <strong>
+                <%= link_to "新規投稿", new_post_path, class: "nav-link" %>
+              </strong>
             </li>
             <li class="nav-item">
-              <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
+              <strong>
+                <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
+              </strong>
             </li>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              <strong>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </strong>
             </li>
           <% elsif admin_signed_in? %>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+              <strong>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+              </strong>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+              <strong>
+                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+              </strong>
             </li>
             <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+              <strong>
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+              </strong>
             </li>
           <% end %>
         </ul>
