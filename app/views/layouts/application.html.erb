@@ -1,57 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FavoRave</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    
-    <!--WebpackerでCSSとJavaScriptファイル管理-->
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
-    <!--FontAwesome導入-->
-    <script src="https://kit.fontawesome.com/8644edc9d3.js" crossorigin="anonymous"></script>
-  </head>
+<head>
+  <title>FavoRave</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
   
-  <body>
-    <header>
-      <!--会員ログインの場合-->
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "マイページ", my_page_users_path %>
-        </li>
-        <li>
-          <%= link_to "新規投稿", new_post_path %>
-        </li>
-        <li>
-          <%= link_to "投稿一覧", posts_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <!--管理者ログインの場合-->
-      <% elsif admin_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-        </li>
-      <!--ログイン前の場合-->
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
-    </header>
+  <!-- WebpackerでCSSとJavaScriptファイル管理 -->
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
+  <!-- FontAwesome導入 -->
+  <script src="https://kit.fontawesome.com/8644edc9d3.js" crossorigin="anonymous"></script>
+</head>
 
-    <main>
-      <%= yield %> 
-    </main>
-    
-    <footer>
-    </footer>
-    
-  </body>
+<body class="bg-light">
+  <header class="navbar navbar-expand-lg navbar-dark" style="background-color: #f08080;">
+    <div class="container">
+      <strong>
+        <a class="navbar-brand" href="#">FavoRave</a>
+      </strong>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <strong>
+                <%= link_to "マイページ", my_page_users_path, class: "nav-link" %>
+              </strong>
+            </li>
+            <li class="nav-item">
+              <strong>
+                <%= link_to "新規投稿", new_post_path, class: "nav-link" %>
+              </strong>
+            </li>
+            <li class="nav-item">
+              <strong>
+                <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
+              </strong>
+            </li>
+            <li class="nav-item">
+              <strong>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </strong>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <strong>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+              </strong>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <strong>
+                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+              </strong>
+            </li>
+            <li class="nav-item">
+              <strong>
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+              </strong>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-5">
+    <%= yield %> 
+  </main>
+  
+  <footer class="text-white text-center py-3 mt-5" style="background-color: #f08080;">
+    <small>© 2024 FavoRave</small>
+  </footer>
+</body>
 </html>
