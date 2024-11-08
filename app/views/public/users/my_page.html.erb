@@ -1,13 +1,21 @@
-<div class="conainer">
+<div class="container my-page text-center p-4" style="max-width: 600px; background-color: #f8f9fa; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
   
-  <%= @user.name %>
+  <!-- ユーザー名 -->
+  <h2 class="my-3" style="color: #333;"><%= @user.name %></h2>
   
-  <%= image_tag @user.get_profile_image(400, 600), class: "rounded-circle border shadow", style: "width: 100px;" %>
+  <!-- プロフィール画像 -->
+  <div class="profile-image mb-3">
+    <%= image_tag @user.get_profile_image(400, 600), class: "rounded-circle border shadow-sm", style: "width: 150px; height: 150px; object-fit: cover;" %>
+  </div>
 
-  <%= simple_format(@user.introduction.present? ? @user.introduction : "よろしくお願いします。") %>
+  <!-- 自己紹介 -->
+  <div class="introduction mb-4" style="color: #666;">
+    <%= simple_format(@user.introduction.present? ? @user.introduction : "よろしくお願いします。") %>
+  </div>
 
+  <!-- プロフィール編集ボタン (ログインユーザーのみ表示) -->
   <% if @user == current_user %>
-    <%= link_to "プロフィール編集", edit_user_information_path, class: "my_page_btn mb-2" %>
+    <%= link_to "プロフィール編集", edit_user_information_path, class: "btn btn-primary my_page_btn mb-2", style: "background-color: #f08080; border-color: #f08080;" %>
   <% end %>
-  
+
 </div>
